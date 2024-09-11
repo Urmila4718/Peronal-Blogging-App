@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <title>Personal Blog</title>
+</head>
+
+<body>
+  <div class="topnav" id="myTopnav">
+    <a href="/" class="active">Home</a>
+    <a href="#news">News</a>
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a>
+    <a href="{% url 'add_article' %}">Post</a>
+  </div>
+
+  <div class="container mt-4">
+    {% if messages %}
+      <div class="alert alert-info" role="alert">
+        {% for message in messages %}
+          {{ message }}
+        {% endfor %}
+      </div>
+    {% endif %}
+    
+    <img class="logo img-fluid" src="{% static 'images/blog.png' %}" alt="Blog">
+
+    {% if data %}
+      <div class="row">
+        {% for p in data %}
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="{% if p.image %}{{ p.image.url }}{% else %}{% static 'images/default.png' %}{% endif %}" class="card-img-top" alt="{{ p.article_name }}">
+              <div class="card-body">
+                <h5 class="card-title">{{ p.article_name }}</h5>
+                <p class="card-text">{{ p.description }}</p>
+                <p class="card-text"><small class="text-muted">Published on: {{ p.pub_date }}</small></p>
+                <p class="card-text"><small class="text-muted">Modified on: {{ p.last_modified }}</small></p>
+                <p class="card-text">{{ p.tags }}</p>
+                <a href="{% url 'edit_article' p.id %}" class="btn-edit">Edit</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

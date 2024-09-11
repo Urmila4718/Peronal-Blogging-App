@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <title>Personal Blog</title>
+    <style>
+        /* Optional custom styling */
+        .container {
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+ 
+<div class="topnav" id="myTopnav">
+  <a href="/" class="active">Home</a>
+  <a href="#news">News</a>
+  <a href="#contact">Contact</a>
+  <a href="#about">About</a>
+  <a href="{% url 'add_article' %}" rel="noopener noreferrer">Post</a>
+</div>
+
+    <div class="container">
+        {% if messages %}
+        {% for message in messages %}
+           <script>alert("{{ message }}");</script> 
+        {% endfor %}
+        {% endif %}  
+        
+        <form class="createpost_form" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input class="form-control" id ="articlename"  type="text" name="article_name" placeholder="Enter the title of the article" required/>
+          <textarea class="form-control" id="description" name="description" placeholder="Enter the description of the article" rows="5" required></textarea>
+          <input class="form-control" id = id_blogImg  type="file" name="blogImg" accept="image/*">
+          <input class="form-control" id ="tags" type="text" name ="tags" placeholder="Enter the tags" required>
+          <button class="btn btn-primary btn-login" id="button" type="submit">Submit Article</button><br>
+      </form>
+    </div>
+    
+
+   
+</body>
+</html>
