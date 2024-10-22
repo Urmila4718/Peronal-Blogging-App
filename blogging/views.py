@@ -58,6 +58,11 @@ def editArticle(request, id):
         article.save()
 
         messages.success(request, "Article updated successfully!")
-        return redirect('index')  # Redirect to the index or another page
+        return redirect('/')  # Redirect to the index or another page
 
     return render(request, 'edit.html', {'article': article})
+
+def deleteArticle(request,id):
+    article = Article.objects.get(id=id)
+    article.delete()
+    return redirect('/')

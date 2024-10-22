@@ -11,5 +11,5 @@ urlpatterns = [
     path('',views.getArticle, name="get_article"),
     path('createpost/',views.addArticle, name="add_article"),
     path('editpost/<int:id>/',views.editArticle, name="edit_article"),
-    #path('article-list/', views.article_list, name='article_list'),
+    path('deletepost/<int:id>', views.deleteArticle, name='delete_article'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

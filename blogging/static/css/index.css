@@ -137,7 +137,6 @@ body {
 
 .form-control {
   height: 45px;
-  width: 600px;
   margin-bottom: 20px;
   border-radius: 40px;
 }
@@ -162,8 +161,10 @@ width: 400px;
 
 .btn-edit{
   background-color:#3886CE;
-  border-radius: 20px;
-  width: 400px;
+  color: #ddd;
+}
+.btn-delete{
+  background-color:#3886CE;
   color: #ddd;
 }
   
