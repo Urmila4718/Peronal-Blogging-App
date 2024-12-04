@@ -122,9 +122,17 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'blogging/media')
+
 MEDIA_URL = '/blogging/media/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+EMAIL_BACKEND= 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST ='smtp.gmail.com'
+EMAIL_HOST_USER= 'firjenny2@gmail.com'
+EMAIL_HOST_PASSWORD ='jyrc bhkc hchm shjn'
+EMAIL_PORT =587
+EMAIL_USE_TLS = True
